@@ -1320,7 +1320,7 @@ class EngineSurface extends SurfaceView implements SurfaceHolder.Callback, View.
 			int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
 			int contextAttrs[] = new int[]
 			{
-				EGL_CONTEXT_CLIENT_VERSION, 1,
+				EGL_CONTEXT_CLIENT_VERSION, 2,
 				EGL10.EGL_NONE
 			};
 			EGLContext ctx = egl.eglCreateContext( dpy, config, EGL10.EGL_NO_CONTEXT, contextAttrs );
