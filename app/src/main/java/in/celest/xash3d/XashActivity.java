@@ -298,7 +298,28 @@ public class XashActivity extends Activity {
 		editor.commit();
 	}
 	
-	
+	    private Gyroscope gyroscope;
+
+    // Initialize the Gyroscope object when the Activity is created
+    // Ensure Context is available before using the sensor
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        gyroscope = new Gyroscope(this);
+    }
+
+    // Stop gyroscope listening when the Activity is paused
+    @Override
+    protected void onPause() {
+        gyroscope.stop();
+    }
+
+    // Restart gyroscope listening when the Activity resumes
+    // Optional: add calibration logic in Gyroscope to prevent view jumps
+    @Override
+    protected void onResume() {
+        gyroscope.start();
+    }
+
 	private DialogInterface.OnClickListener folderAskEnable = new DialogInterface.OnClickListener()
 	{
 		@Override
@@ -1320,7 +1341,7 @@ class EngineSurface extends SurfaceView implements SurfaceHolder.Callback, View.
 			int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
 			int contextAttrs[] = new int[]
 			{
-				EGL_CONTEXT_CLIENT_VERSION, 2,
+				EGL_CONTEXT_CLIENT_VERSION, 1,
 				EGL10.EGL_NONE
 			};
 			EGLContext ctx = egl.eglCreateContext( dpy, config, EGL10.EGL_NO_CONTEXT, contextAttrs );
