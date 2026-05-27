@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 36  // Android 16
 
     defaultConfig {
         applicationId "in.celest.xash3d.csbtem"
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 36  // Android 16
 
         ndk {
             abiFilters 'armeabi-v7a'
@@ -21,14 +21,19 @@ android {
             minifyEnabled false
         }
     }
-    
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['src/main/prebuiltLibs']
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
 }
