@@ -74,7 +74,6 @@ public class XashActivity extends Activity {
 	
 	private static int FPICKER_RESULT = 2;
 	
-	private Gyroscope gyroscope;
 
 	// Joystick constants
 	public final static byte JOY_HAT_CENTERED = 0; // bitmasks for hat current status
@@ -157,8 +156,6 @@ public class XashActivity extends Activity {
 			String basedir = FWGSLib.getStringExtraFromIntent( getIntent(), "basedir", mPref.getString( "basedir", "/sdcard/xash/" ) );
 			checkWritePermission( basedir );
 		}
-		
-		gyroscope = new Gyroscope(this);
 	}
 	
 	@Override
@@ -215,7 +212,6 @@ public class XashActivity extends Activity {
 		}
 		
 		super.onPause();
-		gyroscope.stop();
 	}
 
 	@Override
@@ -228,7 +224,6 @@ public class XashActivity extends Activity {
 		mEnginePaused = false;
 		
 		super.onResume();
-		gyroscope.start();
 	}
 	
 	@Override
@@ -303,6 +298,28 @@ public class XashActivity extends Activity {
 		editor.commit();
 	}
 	
+	    private Gyroscope gyroscope;
+
+    // Initialize the Gyroscope object when the Activity is created
+    // Ensure Context is available before using the sensor
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        gyroscope = new Gyroscope(this);
+    }
+
+    // Stop gyroscope listening when the Activity is paused
+    @Override
+    protected void onPause() {
+        gyroscope.stop();
+    }
+
+    // Restart gyroscope listening when the Activity resumes
+    // Optional: add calibration logic in Gyroscope to prevent view jumps
+    @Override
+    protected void onResume() {
+        gyroscope.start();
+    }
+
 	private DialogInterface.OnClickListener folderAskEnable = new DialogInterface.OnClickListener()
 	{
 		@Override
