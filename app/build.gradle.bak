@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+	namespace "in.celest.xash3d.csbtem"
     compileSdkVersion 36  // Android 16
 
     defaultConfig {

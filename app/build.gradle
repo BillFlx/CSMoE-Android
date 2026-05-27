@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "in.celest.xash3d.csbtem"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 36  // Android 16
 
         ndk {
