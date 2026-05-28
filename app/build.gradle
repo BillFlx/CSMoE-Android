@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-	namespace "com.valstrike.new"
+	namespace "com.valstrike"
     compileSdkVersion 36  // Android 16
 
     defaultConfig {
-        applicationId "com.valstrike.new"
+        applicationId "com.valstrike"
         minSdkVersion 21
         targetSdkVersion 36  // Android 16
 
